@@ -19,7 +19,25 @@ from sklearn.metrics import silhouette_score
 from yellowbrick.cluster import silhouette_visualizer
 from sklearn.preprocessing import StandardScaler
 
-st.title("Question 3 - Clustering Analysis (K-Means)")
+st.title("Question 3")
+st.subheader("Naive Bayes VS Decision Tree")
+
+X = ["Naive Bayes", "Decision Tree"]
+bfr_change = [50, 80]
+aftr_change = [52, 81]
+
+X_axis = np.arange(len(X))
+
+plt.bar(X_axis - 0.2, bfr_change, 0.4, label = 'Naive Bayes')
+plt.bar(X_axis + 0.2, aftr_change, 0.4, label = 'Decision Tree')
+
+plt.xticks(X_axis, X)
+plt.xlabel("Model")
+plt.ylabel("Model")
+plt.title("Accuracy Score")
+plt.legend()
+plt.show()
+st.pyplot()
 
 n_clusterChoice = st.selectbox("Select K Value", [2, 3, 4, 5])
 
@@ -27,6 +45,7 @@ n_clusterChoice = st.selectbox("Select K Value", [2, 3, 4, 5])
 df = pd.read_csv("Bank_CreditScoring.csv")
 df2 = df.copy()
 
+st.subheader("Clustering Analysis (K-Means)")
 bckups_df = df2.copy()
 X_CA = bckups_df.drop(["Decision"], axis=1)
 Y_CA = bckups_df["Decision"]
